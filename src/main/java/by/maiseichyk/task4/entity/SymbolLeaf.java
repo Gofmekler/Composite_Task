@@ -22,10 +22,6 @@ public class SymbolLeaf implements TextComponent{
     }
 
     @Override
-    public int getSize() {
-        return 1;
-    }
-
     public ComponentType getType(){
         return componentType;
     }

@@ -7,8 +7,6 @@ public interface TextComponent {
 
     void remove(TextComponent component);
 
-    int getSize();
-
     ComponentType getType();
 
     List<TextComponent> getList();

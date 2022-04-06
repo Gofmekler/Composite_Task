@@ -6,9 +6,9 @@ import java.util.List;
 public class TextComposite implements TextComponent{
     private ComponentType componentType;
     private List<TextComponent> componentList = new ArrayList<>();
-
-    public TextComposite() {
-    }
+//
+//    public TextComposite() {
+//    }
 
     public TextComposite(ComponentType componentType) {
         this.componentType = componentType;
@@ -22,11 +22,6 @@ public class TextComposite implements TextComponent{
     @Override
     public void remove(TextComponent component) {
         componentList.remove(component);
-    }
-
-    @Override
-    public int getSize() {
-        return componentList.size();
     }
 
     @Override
