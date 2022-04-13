@@ -2,13 +2,11 @@ package by.maiseichyk.task4.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
-public class TextComposite implements TextComponent{
+public class TextComposite implements TextComponent {
     private ComponentType componentType;
     private List<TextComponent> componentList = new ArrayList<>();
-//
-//    public TextComposite() {
-//    }
 
     public TextComposite(ComponentType componentType) {
         this.componentType = componentType;
@@ -25,21 +23,21 @@ public class TextComposite implements TextComponent{
     }
 
     @Override
-    public ComponentType getType(){
+    public ComponentType getType() {
         return componentType;
     }
 
     @Override
     public List<TextComponent> getList() {
-        return componentList;
+        return List.copyOf(componentList);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        return "TextComposite{" +
-                "componentType=" + componentType +
-                ", componentList=" + componentList +
-                '}';
+        StringJoiner stringJoiner = new StringJoiner(componentType.getDelimiter(), componentType.getPrefix(), "");
+        for (TextComponent textComponent : componentList) {
+            stringJoiner.add(textComponent.toString());
+        }
+        return stringJoiner.toString();
     }
 }

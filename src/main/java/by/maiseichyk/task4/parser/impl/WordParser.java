@@ -6,10 +6,10 @@ import by.maiseichyk.task4.entity.TextComposite;
 import by.maiseichyk.task4.parser.CustomParser;
 
 public class WordParser implements CustomParser {
-    private CustomParser symbolParser = new SymbolParser();
+    private final CustomParser symbolParser = new SymbolParser();
 
     @Override
-    public TextComponent parse(String dataLine) {
+    public TextComposite parse(String dataLine) {
         TextComposite wordComposite = new TextComposite(ComponentType.WORD);
         TextComponent wordComponent = symbolParser.parse(dataLine);
         wordComposite.add(wordComponent);

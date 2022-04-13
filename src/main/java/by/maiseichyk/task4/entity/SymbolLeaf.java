@@ -2,7 +2,7 @@ package by.maiseichyk.task4.entity;
 
 import java.util.List;
 
-public class SymbolLeaf implements TextComponent{
+public class SymbolLeaf implements TextComponent {
     private ComponentType componentType;
     private char symbol;
 
@@ -22,7 +22,7 @@ public class SymbolLeaf implements TextComponent{
     }
 
     @Override
-    public ComponentType getType(){
+    public ComponentType getType() {
         return componentType;
     }
 
