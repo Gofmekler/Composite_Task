@@ -19,8 +19,7 @@ public class FileReaderImpl implements FileReader {
                 text.append(bufferedReader.readLine());
             }
         } catch (IOException e) {
-            LOGGER.warn("Reader can't find file " + e);
-            e.printStackTrace();
+            LOGGER.warn("Reader can't get file " + e);
         }
         return text.toString();
     }
