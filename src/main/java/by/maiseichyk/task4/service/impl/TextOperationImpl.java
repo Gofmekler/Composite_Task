@@ -4,23 +4,28 @@ import by.maiseichyk.task4.entity.ComponentType;
 import by.maiseichyk.task4.entity.TextComponent;
 import by.maiseichyk.task4.entity.TextComposite;
 import by.maiseichyk.task4.service.TextOperation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TextOperationImpl implements TextOperation{
+public class TextOperationImpl implements TextOperation {
     private static final String VOWELS_REGEX = "(?i:[aeiouyаоэеиыуёюя])";
     private static final String CONSONANTS_REGEX = "(?i:[^!,()_@*#$&.:&&[^aeiouyаоэеиыуёюя]])";
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public List<TextComponent> sortParagraphs(TextComposite textComposite) {
+        LOGGER.info("Sort paragraphs method was called.");
         return textComposite.getList().stream()
                 .sorted(Comparator.comparingInt(o -> o.getList().size()))
                 .toList();
     }
 
     @Override
-    public List<TextComponent> findTheSentenceWithTheLongestWord(TextComposite textComposite) {
+    public List<TextComponent> findSentenceWithLongestWord(TextComposite textComposite) {
+        LOGGER.info("Finding sentence with longest word method was called.");
         int maxLength = findLongestWordLength(textComposite);
         return textComposite.getList().stream()
                 .flatMap(p -> p.getList().stream())
@@ -30,17 +35,19 @@ public class TextOperationImpl implements TextOperation{
     }
 
     @Override
-    public List<TextComponent> formatTextWithTheTerm(TextComposite textComposite, int term) {
+    public List<TextComponent> deleteShortSentence(TextComposite textComposite, int term) {
+        LOGGER.info("Deleting short sentences method was called.");
         return textComposite.getList().stream()
                 .flatMap(p -> p.getList().stream())
                 .filter(s -> s.getList().stream()
-                    .flatMap(l -> l.getList().stream())
-                    .filter(w -> w.getType().equals(ComponentType.WORD)).count() >= term).toList();
+                        .flatMap(l -> l.getList().stream())
+                        .filter(w -> w.getType().equals(ComponentType.WORD)).count() >= term).toList();
     }
 
 
     @Override
     public Map<String, Long> countTheSameWords(TextComposite textComposite) {
+        LOGGER.info("Counting the same words method was called.");
         Map<String, Long> words = textComposite.getList().stream()
                 .flatMap(p -> p.getList().stream())
                 .flatMap(s -> s.getList().stream())
@@ -53,6 +60,7 @@ public class TextOperationImpl implements TextOperation{
 
     @Override
     public long countVowels(TextComposite textComposite) {
+        LOGGER.info("Counting vowels method was called.");
         return textComposite.getList().stream()
                 .flatMap(p -> p.getList().stream())
                 .flatMap(s -> s.getList().stream())
@@ -66,6 +74,7 @@ public class TextOperationImpl implements TextOperation{
 
     @Override
     public long countConsonants(TextComposite textComposite) {
+        LOGGER.info("Counting consonants method was called.");
         return textComposite.getList().stream()
                 .flatMap(p -> p.getList().stream())
                 .flatMap(s -> s.getList().stream())
@@ -78,6 +87,7 @@ public class TextOperationImpl implements TextOperation{
     }
 
     private int findLongestWordLength(TextComposite textComposite) {
+        LOGGER.info("Find longest words length private method was called.");
         TextComponent textComponent = textComposite.getList().stream()
                 .flatMap(p -> p.getList().stream())
                 .flatMap(s -> s.getList().stream())

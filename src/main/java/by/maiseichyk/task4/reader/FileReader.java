@@ -4,6 +4,6 @@ import by.maiseichyk.task4.entity.TextComponent;
 
 import java.util.ArrayList;
 
-public interface CustomReader {
+public interface FileReader {
     String readFile(String fileName);
 }

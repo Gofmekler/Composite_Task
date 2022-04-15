@@ -10,9 +10,9 @@ public interface TextOperation {
 
     List<TextComponent> sortParagraphs(TextComposite textComposite);
 
-    List<TextComponent> findTheSentenceWithTheLongestWord(TextComposite textComposite);
+    List<TextComponent> findSentenceWithLongestWord(TextComposite textComposite);
 
-    List<TextComponent> formatTextWithTheTerm(TextComposite textComposite, int term);
+    List<TextComponent> deleteShortSentence(TextComposite textComposite, int term);
 
     Map<String, Long> countTheSameWords(TextComposite textComposite);
 
